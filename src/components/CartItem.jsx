@@ -1,3 +1,9 @@
+import { useSelector, useDispatch } from "react-redux";
+import {
+  incrementQuantityFromItem,
+  decrementQuantityFromItem,
+} from "../redux/cartSlice";
+
 const defaultItem = {
   id: "1",
   name: "ProductName",
@@ -5,16 +11,23 @@ const defaultItem = {
   quantity: 1,
 };
 
-export default function CartItem({ item = defaultItem }) {
+export default function CartItem(item = defaultItem) {
+  const dispatch = useDispatch();
+  const handleIncrement = () => {
+    dispatch(incrementQuantityFromItem(item));
+  };
+  const handleDecrement = () => {
+    dispatch(decrementQuantityFromItem(item));
+  };
   return (
     <li className="cart-item">
       <p>
         {item.name} - {item.quantity} x ${item.price}
       </p>
       <div className="cart-item-actions">
-        <button>-</button>
+        <button onClick={() => handleDecrement()}>-</button>
         <span>{item.quantity}</span>
-        <button>+</button>
+        <button onClick={() => handleIncrement()}>+</button>
       </div>
     </li>
   );

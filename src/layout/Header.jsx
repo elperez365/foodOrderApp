@@ -5,16 +5,22 @@ import Button from "../reusable/Button";
 import Cart from "./Cart";
 import History from "./History";
 
-export default function Header() {
-  const [isOpen, setIsOpen] = useState({ cart: false, history: false });
+import { useDispatch, useSelector } from "react-redux";
+import { openModal } from "../redux/modalSlice";
 
-  const handleOpen = (modalName, action) => {
-    const actions = {
-      OPEN: true,
-      CLOSE: false,
-    };
-    setIsOpen((prev) => ({ ...prev, [modalName]: actions[action] }));
+export default function Header() {
+  const history = useSelector((state) => state.history);
+  const cart = useSelector((state) => state.cart);
+
+  const dispatch = useDispatch();
+
+  const handleOpen = (modalName) => {
+    dispatch(openModal(modalName));
   };
+
+  const itemsTotal = cart.reduce((acc, item) => {
+    return acc + item.quantity;
+  }, 0);
 
   return (
     <header id="main-header">
@@ -22,23 +28,14 @@ export default function Header() {
         <img src={logo} alt="" />
         <h1>REACTFOOD</h1>
       </div>
-      <Button
-        className="text-button"
-        onClick={() => handleOpen("history", "OPEN")}
-      >
-        History (1)
+      <Button className="text-button" onClick={() => handleOpen("history")}>
+        History {"(" + history.length + ")"}
       </Button>
-      <History
-        isOpen={isOpen.history}
-        onClose={() => handleOpen("history", "CLOSE")}
-      />
-      <Button
-        className="text-button"
-        onClick={() => handleOpen("cart", "OPEN")}
-      >
-        Cart (4)
+      <History />
+      <Button className="text-button" onClick={() => handleOpen("cart")}>
+        Cart {"(" + itemsTotal + ")"}
       </Button>
-      <Cart isOpen={isOpen.cart} onClose={() => handleOpen("cart", "CLOSE")} />
+      <Cart />
     </header>
   );
 }

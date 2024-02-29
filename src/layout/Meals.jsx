@@ -1,18 +1,30 @@
-import imgAppoggio from "../appoggio/caesar-salad.jpg";
 import MealCard from "../components/MealCard";
-import ArrayAppoggio from "../appoggio/meals.js";
+import { useFetch } from "../hooks/useFetch.jsx";
+
+import { fetchMeals } from "../http.js";
 
 export default function Meals() {
+  const { data, loading, error } = useFetch(fetchMeals);
+  if (loading) {
+    return <p>Loading...</p>;
+  }
+  if (error) {
+    return <p>{error.message}</p>;
+  }
+  if (data.length === 0) {
+    return <p>No meals available.</p>;
+  }
+
   return (
     <div id="meals">
-      {ArrayAppoggio.map((meal) => (
+      {data.map((meal) => (
         <MealCard
           key={meal.id}
           id={meal.id}
           title={meal.name}
           price={meal.price}
           description={meal.description}
-          image={imgAppoggio}
+          image={meal.image}
         />
       ))}
     </div>
