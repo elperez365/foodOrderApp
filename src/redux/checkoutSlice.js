@@ -20,6 +20,9 @@ export const checkoutSlice = createSlice({
     goToCheckout: (state) => {
       state.isInCheckout = true;
     },
+    exitCheckout: (state) => {
+      state.isInCheckout = false;
+    },
     setItems: (state, action) => {
       state.items = action.payload;
     },
@@ -31,3 +34,6 @@ export const checkoutSlice = createSlice({
     },
   },
 });
+
+export const { goToCheckout, setItems, setTotal, setConsumer, exitCheckout } =
+  checkoutSlice.actions;
