@@ -10,13 +10,14 @@ const CheckoutForm = forwardRef((props, ref) => {
 
   useImperativeHandle(ref, () => ({
     submit: () => {
-      onSubmit();
+      return onSubmit();
     },
   }));
 
   const onSubmit = () => {
     const inputs = formRef.current.querySelectorAll("input");
     const fields = createFieldsByInputs(Array.from(inputs));
+    let isValid = false;
 
     const { error, errors, emptyValue, empties } = searchErrors(fields);
 
@@ -33,12 +34,14 @@ const CheckoutForm = forwardRef((props, ref) => {
     }
     if (!error && !emptyValue) {
       toast.success("form valido");
+      isValid = true;
     }
+    return { isValid, fields };
   };
 
   return (
     <form className="control" ref={formRef}>
-      <Input label={"Full Name"} action="NAME" />
+      <Input label={"Full Name"} action="FULL-NAME" />
       <Input label={"E-Mail Address"} action="EMAIL" />
       <Input label={"Street"} action="NO-CONTROLL" />
       <div className="control-row">

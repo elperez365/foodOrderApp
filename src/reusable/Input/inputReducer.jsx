@@ -2,9 +2,10 @@ export const inputReducer = (state, action) => {
   const empty = action.payload.length === 0;
 
   switch (action.type) {
-    case "NAME":
-      const nameRegex = /^[a-zA-Z]+$/;
+    case "FULL-NAME":
+      const nameRegex = /^[a-zA-Z]+ [a-zA-Z]+$/;
       const isNameError = !nameRegex.test(action.payload) && !empty;
+
       return { ...state, value: action.payload, error: isNameError };
 
     case "EMAIL":

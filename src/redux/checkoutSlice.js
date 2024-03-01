@@ -2,15 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   isInCheckout: false,
-  items: [],
-  total: 0,
-  consumer: {
-    name: "",
-    email: "",
-    street: "",
-    postalCode: "",
-    city: "",
-  },
+  isSubmitted: false,
 };
 
 export const checkoutSlice = createSlice({
@@ -23,17 +15,14 @@ export const checkoutSlice = createSlice({
     exitCheckout: (state) => {
       state.isInCheckout = false;
     },
-    setItems: (state, action) => {
-      state.items = action.payload;
+    isSubmitted: (state) => {
+      state.isSubmitted = true;
     },
-    setTotal: (state, action) => {
-      state.total = action.payload;
-    },
-    setConsumer: (state, action) => {
-      state.consumer = action.payload;
+    isNotSubmitted: (state) => {
+      state.isSubmitted = false;
     },
   },
 });
 
-export const { goToCheckout, setItems, setTotal, setConsumer, exitCheckout } =
+export const { goToCheckout, exitCheckout, isSubmitted, isNotSubmitted } =
   checkoutSlice.actions;

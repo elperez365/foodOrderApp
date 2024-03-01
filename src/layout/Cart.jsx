@@ -6,11 +6,13 @@ import { closeModal } from "../redux/modalSlice";
 
 import { goToCheckout } from "../redux/checkoutSlice";
 import { Checkout } from "./Checkout";
+import Submitted from "./Submitted";
 
 export default function Cart() {
   const isOpen = useSelector((state) => state.modal.cart);
   const cart = useSelector((state) => state.cart);
   const isInCheckout = useSelector((state) => state.checkout.isInCheckout);
+  const isSubmitted = useSelector((state) => state.checkout.isSubmitted);
   const dispatch = useDispatch();
 
   const handleClose = () => {
@@ -27,9 +29,9 @@ export default function Cart() {
 
   return (
     <Modal isOpen={isOpen} onClose={() => handleClose()}>
-      {isInCheckout ? (
-        <Checkout />
-      ) : (
+      {isInCheckout && <Checkout />}
+      {!isInCheckout && isSubmitted && <Submitted />}
+      {!isInCheckout && !isSubmitted && (
         <>
           <h2>Your Cart</h2>
           <ul>
