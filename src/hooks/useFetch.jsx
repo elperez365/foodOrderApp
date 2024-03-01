@@ -23,7 +23,7 @@ export const useFetch = (fetchFunction, setStateFunction, reducerName) => {
         setError(error);
         setLoading(false);
       });
-  }, [fetchFunction]);
+  }, [fetchFunction, setStateFunction, dispatch]);
 
   return { data, loading, error };
 };

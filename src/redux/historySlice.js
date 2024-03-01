@@ -1,6 +1,29 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = [];
+const initialState = [
+  {
+    id: "222",
+    items: [
+      {
+        id: "m1",
+        name: "Mac & Cheese",
+        price: "8.99",
+        description:
+          "Creamy cheddar cheese mixed with perfectly cooked macaroni, topped with crispy breadcrumbs. A classic comfort food.",
+        image: "images/mac-and-cheese.jpg",
+        quantity: 1,
+      },
+    ],
+    total: 0,
+    consumer: {
+      name: "",
+      email: "",
+      street: "",
+      postalCode: "",
+      city: "",
+    },
+  },
+];
 
 export const historySlice = createSlice({
   name: "history",
