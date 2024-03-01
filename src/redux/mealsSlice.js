@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { fetchMeals, host } from "../http";
 
 const initialState = [];
 

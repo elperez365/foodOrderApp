@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
-export const useFetch = (fetchFunction) => {
-  const [data, setData] = useState([]);
+export const useFetch = (fetchFunction, setStateFunction, reducerName) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const data = useSelector((state) => state[reducerName]);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     fetchFunction()
@@ -14,7 +16,7 @@ export const useFetch = (fetchFunction) => {
         return response.json();
       })
       .then((data) => {
-        setData(data);
+        dispatch(setStateFunction(data));
         setLoading(false);
       })
       .catch((error) => {
