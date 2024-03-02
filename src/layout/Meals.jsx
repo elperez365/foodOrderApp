@@ -3,11 +3,12 @@ import { useFetch } from "../hooks/useFetch.jsx";
 
 import { fetchMeals } from "../http.js";
 import { setMeals } from "../redux/mealsSlice.js";
+import Loading from "../reusable/Loading/Loading.jsx";
 
 export default function Meals() {
   const { data, loading, error } = useFetch(fetchMeals, setMeals, "meals");
   if (loading) {
-    return <p>Loading...</p>;
+    return <Loading />;
   }
   if (error) {
     return <p>{error.message}</p>;
