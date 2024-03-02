@@ -23,7 +23,7 @@ export const cartSlice = createSlice({
         item.quantity -= 1;
         return;
       }
-      // if the quantity is 1, remove the item from the cart
+
       if (item.quantity === 1) {
         const index = state.findIndex((item) => item.id === action.payload.id);
         state.splice(index, 1);
@@ -48,4 +48,5 @@ export const {
   decrementQuantityFromItem,
   incrementQuantityFromItem,
   calculateTotalPrice,
+  clearCart,
 } = cartSlice.actions;

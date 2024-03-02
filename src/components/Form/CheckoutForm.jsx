@@ -33,7 +33,7 @@ const CheckoutForm = forwardRef((props, ref) => {
       });
     }
     if (!error && !emptyValue) {
-      toast.success("form valido");
+      toast.success("Ordine inviato con successo");
       isValid = true;
     }
     return { isValid, fields };

@@ -16,7 +16,7 @@ const initialState = [
     ],
     total: 8.99,
     date: "2/4/2021",
-    consumer: {
+    customer: {
       name: "",
       email: "",
       street: "",
@@ -33,7 +33,10 @@ export const historySlice = createSlice({
     addToHistory: (state, action) => {
       state.push(action.payload);
     },
+    setHistories: (state, action) => {
+      return action.payload;
+    },
   },
 });
 
-export const { addToHistory } = historySlice.actions;
+export const { addToHistory, setHistories } = historySlice.actions;

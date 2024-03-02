@@ -5,12 +5,21 @@ import { closeModal } from "../redux/modalSlice";
 import OrdersList from "../components/OrdersList";
 import OrderDetails from "../components/OrderDetails";
 import { useState } from "react";
+import { fetchOrders } from "../http";
+import { setHistories } from "../redux/historySlice";
+import { useFetch } from "../hooks/useFetch";
 
 export default function History({}) {
   const isOpen = useSelector((state) => state.modal.history);
   const history = useSelector((state) => state.history);
   const [selectedOrder, setSelectedOrder] = useState(history ? history[0] : []);
   const dispatch = useDispatch();
+
+  const { data, loading, error } = useFetch(
+    fetchOrders,
+    setHistories,
+    "history"
+  );
 
   const handleClose = () => {
     dispatch(closeModal("history"));

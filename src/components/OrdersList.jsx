@@ -4,7 +4,7 @@ export default function OrdersList({ history, onSelect }) {
       {history?.map((order) => (
         <li key={order.id} onClick={() => onSelect(order)}>
           <p>
-            <strong>{order.id}</strong>
+            <strong>{Number(order.id).toFixed(0)}</strong>
           </p>
           <p>{order.date}</p>
           <p>${order.total.toFixed(2)}</p>
