@@ -3,7 +3,10 @@ export default function OrderDetails({ selectedOrder }) {
     <div className="order-detail histories-container">
       <div id="order-detail-header">
         <h3>Order detail</h3>
-        <p>id :{selectedOrder.id}</p>
+        <p>
+          <strong>customer : </strong>
+          <span> {selectedOrder.customer.name}</span>
+        </p>
       </div>
       <div id="order-detail-body">
         <ul>
