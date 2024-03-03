@@ -24,11 +24,21 @@ body {
   }
 }
 
+.Toastify__toast-container {
+  z-index: 9999999 !important;
+}
+
 #main-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 3rem 10%;
+}
+
+@media screen and (max-width: 768px) {
+  #main-header {
+    flex-direction: column;
+  }
 }
 
 #main-header #title {
@@ -122,8 +132,8 @@ h1 {
 }
 
 .cart ul {
-  list-style: none;
-  margin: 0.5rem 0;
+  /* list-style: none; */
+  /* margin: 0.5rem 0; */
   padding: 0;
 }
 
@@ -154,18 +164,20 @@ h1 {
 .cart-item {
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  margin: 0.5rem 0;
-}
+  /* align-items: center; */
 
-.cart-item p {
-  margin: 0;
+  /* margin: 0.5rem 0; */
+  p {
+    display: flex;
+    justify-content: space-around;
+    gap: 1rem;
+  }
 }
 
 .cart-item-actions {
   display: flex;
   gap: 1rem;
-  align-items: center;
+  /* align-items: center; */
 }
 
 .cart-item-actions button {
@@ -274,7 +286,7 @@ h1 {
   & span {
     font-size: 0.7rem;
   }
-  /* l'ultimo paragrafo */
+
   & p:last-child {
     text-align: end;
   }

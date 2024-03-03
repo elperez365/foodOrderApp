@@ -3,7 +3,7 @@ import Button from "../reusable/Button";
 import { exitCheckout, isSubmitted } from "../redux/checkoutSlice";
 import CheckoutForm from "../components/Form/CheckoutForm";
 import { useRef } from "react";
-import { addToHistory } from "../redux/historySlice";
+
 import { Customer, Order } from "../classes";
 import { submitOrder } from "../http";
 
@@ -46,7 +46,6 @@ export const Checkout = () => {
   return (
     <div>
       <h2>Checkout</h2>
-
       <CheckoutForm ref={submitRef} />
       <div className="modal-actions">
         <Button

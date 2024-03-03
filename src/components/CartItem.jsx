@@ -22,7 +22,9 @@ export default function CartItem(item = defaultItem) {
   return (
     <li className="cart-item">
       <p>
-        {item.name} - {item.quantity} x ${item.price}
+        <span>{item.quantity} x</span>
+        <span>{item.name}</span>
+        <span>${item.price}</span>
       </p>
       <div className="cart-item-actions">
         <button onClick={() => handleDecrement()}>-</button>

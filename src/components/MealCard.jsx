@@ -2,12 +2,14 @@ import Button from "../reusable/Button";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../redux/cartSlice";
 import { host } from "../http";
+import { toast } from "react-toastify";
 
 export default function MealCard({ id, title, price, description, image }) {
   const dispatch = useDispatch();
 
   const handleAddToCart = () => {
     const item = { id, name: title, price, description, image };
+    toast.success("Item added to cart");
     dispatch(addToCart(item));
   };
   return (

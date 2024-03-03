@@ -15,6 +15,14 @@ const CheckoutForm = forwardRef((props, ref) => {
   }));
 
   const onSubmit = () => {
+    const resolveAfter = new Promise((resolve) => setTimeout(resolve, 1000));
+    const notify = () =>
+      toast.promise(resolveAfter, {
+        pending: "Waiting for validation...",
+        success: "Submitted successfully!",
+        error: "An error occurred. Please try again.",
+      });
+
     const inputs = formRef.current.querySelectorAll("input");
     const fields = createFieldsByInputs(Array.from(inputs));
     let isValid = false;
@@ -33,7 +41,7 @@ const CheckoutForm = forwardRef((props, ref) => {
       });
     }
     if (!error && !emptyValue) {
-      toast.success("Ordine inviato con successo");
+      notify();
       isValid = true;
     }
     return { isValid, fields };
