@@ -19,9 +19,20 @@ export default function OrderDetails({ selectedOrder }) {
           ))}
         </ul>
       </div>
-      <div className="order-detail-footer">
+      <div id="order-detail-footer">
         <p>
-          <strong>Total: ${selectedOrder.total.toFixed(2)}</strong>
+          <strong>email : </strong>
+          <span> {selectedOrder.customer.email}</span>
+        </p>
+        <p>
+          <strong>address : </strong>
+          <span>
+            {selectedOrder.customer.street}, {selectedOrder.customer.postalCode}
+            , {selectedOrder.customer.city}
+          </span>
+        </p>
+        <p>
+          <strong>Total: $ {selectedOrder.total.toFixed(2)}</strong>
         </p>
       </div>
     </div>
