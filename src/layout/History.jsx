@@ -15,11 +15,7 @@ export default function History({}) {
   const [selectedOrder, setSelectedOrder] = useState(history ? history[0] : []);
   const dispatch = useDispatch();
 
-  const { data, loading, error } = useFetch(
-    fetchOrders,
-    setHistories,
-    "history"
-  );
+  const { error } = useFetch(fetchOrders, setHistories, "history");
 
   const handleClose = () => {
     dispatch(closeModal("history"));
@@ -31,18 +27,22 @@ export default function History({}) {
 
   return (
     <Modal isOpen={isOpen} onClose={() => handleClose()}>
-      <div className="history-orders">
-        <h2>History orders</h2>
-        <div className="histories-layout">
-          <OrdersList
-            history={history}
-            onSelect={handleSelectOrder}
-            selectedOrder={selectedOrder}
-          />
-          <OrderDetails selectedOrder={selectedOrder} />
-        </div>
-      </div>
-
+      {error && <p>{error.message}</p>}
+      {!error && (
+        <>
+          <div className="history-orders">
+            <h2>History orders</h2>
+            <div className="histories-layout">
+              <OrdersList
+                history={history}
+                onSelect={handleSelectOrder}
+                selectedOrder={selectedOrder}
+              />
+              <OrderDetails selectedOrder={selectedOrder} />
+            </div>
+          </div>
+        </>
+      )}
       <div className="modal-actions">
         <Button onClick={() => handleClose()}>Close</Button>
       </div>
