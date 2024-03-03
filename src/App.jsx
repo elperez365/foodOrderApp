@@ -9,7 +9,7 @@ function App() {
   return (
     <>
       <ToastContainer
-        position="top-center"
+        position="top-left"
         autoClose={3000}
         hideProgressBar={false}
         newestOnTop={false}
@@ -21,6 +21,7 @@ function App() {
         theme="dark"
         transition={Bounce}
       />
+
       <main>
         <Header />
         <Meals />

@@ -7,14 +7,17 @@ import { useImperativeHandle } from "react";
 
 const CheckoutForm = forwardRef((props, ref) => {
   const formRef = React.useRef();
+  const submitButtonRef = React.useRef();
 
   useImperativeHandle(ref, () => ({
     submit: () => {
       return onSubmit();
     },
+    submitButtonRef: submitButtonRef.current,
   }));
 
-  const onSubmit = () => {
+  const onSubmit = (e) => {
+    e && e.preventDefault();
     const resolveAfter = new Promise((resolve) => setTimeout(resolve, 1000));
     const notify = () =>
       toast.promise(resolveAfter, {
@@ -37,7 +40,8 @@ const CheckoutForm = forwardRef((props, ref) => {
 
     if (emptyValue) {
       empties.forEach((error) => {
-        toast.warning(`${error} è vuoto`);
+        // toast.warning(`${error} è vuoto`);
+        console.log(`${error} è vuoto`);
       });
     }
     if (!error && !emptyValue) {
@@ -48,14 +52,19 @@ const CheckoutForm = forwardRef((props, ref) => {
   };
 
   return (
-    <form className="control" ref={formRef}>
-      <Input label={"Full Name"} action="FULL-NAME" />
-      <Input label={"E-Mail Address"} action="EMAIL" />
-      <Input label={"Street"} action="NO-CONTROLL" />
-      <div className="control-row">
-        <Input label={"Postal Code"} action="POSTAL" />
-        <Input label={"City"} action="CITY" />
+    <form
+      onSubmit={(e) => e.preventDefault()}
+      className="control"
+      ref={formRef}
+    >
+      <Input label={"Full Name"} action="FULL-NAME" required />
+      <Input label={"E-Mail Address"} action="EMAIL" type="email" required />
+      <Input label={"Street"} action="NO-CONTROLL" required />
+      <div className="control-row" required>
+        <Input label={"Postal Code"} action="POSTAL" required />
+        <Input label={"City"} action="CITY" required />
       </div>
+      <button ref={submitButtonRef} type="submit" style={{ display: "none" }} />
     </form>
   );
 });

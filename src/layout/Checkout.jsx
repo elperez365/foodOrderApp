@@ -13,6 +13,7 @@ export const Checkout = () => {
   const submitRef = useRef();
 
   const handleSubmit = () => {
+    submitRef.current.submitButtonRef.click();
     const { isValid, fields } = submitRef.current.submit();
 
     if (isValid) {
