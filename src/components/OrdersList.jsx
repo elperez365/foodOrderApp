@@ -1,8 +1,19 @@
-export default function OrdersList({ history, onSelect }) {
+export default function OrdersList({ history, onSelect, selectedOrder }) {
+  const classListItem = (order) => {
+    if (selectedOrder.id === order.id) {
+      return "active";
+    }
+    return undefined;
+  };
+
   return (
     <ul className="histories-container orders-list">
       {history?.map((order) => (
-        <li key={order.id} onClick={() => onSelect(order)}>
+        <li
+          className={classListItem(order)}
+          key={order.id}
+          onClick={() => onSelect(order)}
+        >
           <p>
             <strong>{Number(order.id).toFixed(0)}</strong>
           </p>

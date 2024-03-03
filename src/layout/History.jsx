@@ -34,7 +34,11 @@ export default function History({}) {
       <div className="history-orders">
         <h2>History orders</h2>
         <div className="histories-layout">
-          <OrdersList history={history} onSelect={handleSelectOrder} />
+          <OrdersList
+            history={history}
+            onSelect={handleSelectOrder}
+            selectedOrder={selectedOrder}
+          />
           <OrderDetails selectedOrder={selectedOrder} />
         </div>
       </div>
