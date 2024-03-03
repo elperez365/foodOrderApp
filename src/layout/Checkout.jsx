@@ -6,6 +6,7 @@ import { useRef } from "react";
 
 import { Customer, Order } from "../classes";
 import { submitOrder } from "../http";
+import { closeModal } from "../redux/modalSlice";
 
 export const Checkout = () => {
   const cart = useSelector((state) => state.cart);
@@ -44,17 +45,21 @@ export const Checkout = () => {
     }
   };
 
+  const handleClose = () => {
+    dispatch(exitCheckout());
+    dispatch(closeModal("cart"));
+  };
+
   return (
     <div>
+      <Button onClick={() => dispatch(exitCheckout())}>Back</Button>
       <h2>Checkout</h2>
       <CheckoutForm ref={submitRef} />
       <div className="modal-actions">
-        <Button
-          className="text-button"
-          onClick={() => dispatch(exitCheckout())}
-        >
+        <Button className="text-button" onClick={() => handleClose()}>
           Close
         </Button>
+
         <Button onClick={() => handleSubmit()}>Submit Order</Button>
       </div>
     </div>
