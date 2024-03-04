@@ -5,8 +5,9 @@ import CheckoutForm from "../components/Form/CheckoutForm";
 import { useCallback, useRef } from "react";
 
 import { Customer, Order } from "../classes";
-import { submitOrder } from "../http";
+
 import { closeModal } from "../redux/modalSlice";
+import { addToHistory } from "../redux/historySlice";
 
 export const Checkout = () => {
   const cart = useSelector((state) => state.cart);
@@ -29,19 +30,19 @@ export const Checkout = () => {
         return acc + item.price * item.quantity;
       }, 0);
 
-      // const id = Math.random() * 1000;
+      const id = Math.random() * 1000;
 
       const order = new Order(
-        // id.toFixed(0),
+        id.toFixed(0),
         cart,
         total,
         new Date().toLocaleDateString(),
         customer
       );
-      // dispatch(addToHistory(order));
+
       dispatch(isSubmitted());
       dispatch(exitCheckout());
-      submitOrder(order);
+      dispatch(addToHistory(order));
     }
   };
 

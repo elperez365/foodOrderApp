@@ -9,7 +9,8 @@ export class Customer {
 }
 
 export class Order {
-  constructor(items, total, date, customer) {
+  constructor(id, items, total, date, customer) {
+    this.id = id;
     this.items = items;
     this.total = total;
     this.date = date;

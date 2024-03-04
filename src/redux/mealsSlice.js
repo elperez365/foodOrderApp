@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { fetchMeals, host } from "../http";
+import { DUMMY_MEALS } from "../data/meals";
 
-const initialState = [];
+const initialState = DUMMY_MEALS;
 
 export const mealsSlice = createSlice({
   name: "meals",

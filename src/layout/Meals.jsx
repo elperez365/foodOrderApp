@@ -1,25 +1,13 @@
 import MealCard from "../components/MealCard";
-import { useFetch } from "../hooks/useFetch.jsx";
 
-import { fetchMeals } from "../http.js";
-import { setMeals } from "../redux/mealsSlice.js";
-import Loading from "../reusable/Loading/Loading.jsx";
+import { useSelector } from "react-redux";
 
 export default function Meals() {
-  const { data, loading, error } = useFetch(fetchMeals, setMeals, "meals");
-  if (loading) {
-    return <Loading />;
-  }
-  if (error) {
-    return <p>{error.message}</p>;
-  }
-  if (data.length === 0) {
-    return <p>No meals available.</p>;
-  }
+  const meals = useSelector((state) => state.meals);
 
   return (
     <div id="meals">
-      {data.map((meal) => (
+      {meals?.map((meal) => (
         <MealCard
           key={meal.id}
           id={meal.id}

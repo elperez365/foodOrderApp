@@ -1,7 +1,7 @@
 import Button from "../reusable/Button";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../redux/cartSlice";
-import { host } from "../http";
+
 import { toast } from "react-toastify";
 
 export default function MealCard({ id, title, price, description, image }) {
@@ -15,7 +15,7 @@ export default function MealCard({ id, title, price, description, image }) {
   return (
     <section className="meal-item">
       <article>
-        <img src={`${host}/${image}`} alt={title} />
+        <img src={`${image}`} alt={title} />
         <h3>{title}</h3>
         <div>
           <span className="meal-item-price">${price}</span>
