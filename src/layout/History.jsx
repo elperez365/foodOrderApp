@@ -17,11 +17,11 @@ export default function History({}) {
 
   const handleClose = useCallback(() => {
     dispatch(closeModal("history"));
-  });
+  }, [dispatch]);
 
   const handleSelectOrder = useCallback((order) => {
     setSelectedOrder(order);
-  });
+  }, []);
 
   return (
     <Modal isOpen={isOpen} onClose={() => handleClose()}>

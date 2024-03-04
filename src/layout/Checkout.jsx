@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Button from "../reusable/Button";
 import { exitCheckout, isSubmitted } from "../redux/checkoutSlice";
 import CheckoutForm from "../components/Form/CheckoutForm";
-import { useRef } from "react";
+import { useCallback, useRef } from "react";
 
 import { Customer, Order } from "../classes";
 import { submitOrder } from "../http";
@@ -45,10 +45,10 @@ export const Checkout = () => {
     }
   };
 
-  const handleClose = () => {
+  const handleClose = useCallback(() => {
     dispatch(exitCheckout());
     dispatch(closeModal("cart"));
-  };
+  }, [dispatch]);
 
   return (
     <div>

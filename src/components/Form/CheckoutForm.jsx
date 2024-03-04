@@ -18,7 +18,7 @@ const CheckoutForm = forwardRef((props, ref) => {
 
   const onSubmit = (e) => {
     e && e.preventDefault();
-    const resolveAfter = new Promise((resolve) => setTimeout(resolve, 1000));
+    const resolveAfter = new Promise((resolve) => setTimeout(resolve, 2000));
     const notify = () =>
       toast.promise(resolveAfter, {
         pending: "Waiting for validation...",

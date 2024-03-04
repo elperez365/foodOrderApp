@@ -1,10 +1,15 @@
+import { useCallback } from "react";
+
 export default function OrdersList({ history, onSelect, selectedOrder }) {
-  const classListItem = (order) => {
-    if (selectedOrder.id === order.id) {
-      return "active";
-    }
-    return undefined;
-  };
+  const classListItem = useCallback(
+    (order) => {
+      if (selectedOrder.id === order.id) {
+        return "active";
+      }
+      return undefined;
+    },
+    [selectedOrder]
+  );
 
   return (
     <ul className="histories-container orders-list">
