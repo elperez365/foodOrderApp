@@ -4,26 +4,24 @@ import { useSelector, useDispatch } from "react-redux";
 import { closeModal } from "../redux/modalSlice";
 import OrdersList from "../components/OrdersList";
 import OrderDetails from "../components/OrderDetails";
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { fetchOrders } from "../http";
 import { setHistories } from "../redux/historySlice";
 import { useFetch } from "../hooks/useFetch";
 
 export default function History({}) {
+  const { data, error } = useFetch(fetchOrders, setHistories, "history");
   const isOpen = useSelector((state) => state.modal.history);
-  const history = useSelector((state) => state.history);
-  const [selectedOrder, setSelectedOrder] = useState(history ? history[0] : []);
+  const [selectedOrder, setSelectedOrder] = useState({});
   const dispatch = useDispatch();
 
-  const { error } = useFetch(fetchOrders, setHistories, "history");
-
-  const handleClose = () => {
+  const handleClose = useCallback(() => {
     dispatch(closeModal("history"));
-  };
+  });
 
-  const handleSelectOrder = (order) => {
+  const handleSelectOrder = useCallback((order) => {
     setSelectedOrder(order);
-  };
+  });
 
   return (
     <Modal isOpen={isOpen} onClose={() => handleClose()}>
@@ -34,7 +32,7 @@ export default function History({}) {
             <h2>History orders</h2>
             <div className="histories-layout">
               <OrdersList
-                history={history}
+                history={data}
                 onSelect={handleSelectOrder}
                 selectedOrder={selectedOrder}
               />

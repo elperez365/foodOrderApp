@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = [
   {
-    id: "222",
+    id: "DUMMY",
     items: [
       {
         id: "m1",
@@ -17,11 +17,11 @@ const initialState = [
     total: 8.99,
     date: "2/4/2021",
     customer: {
-      name: "",
-      email: "",
-      street: "",
-      postalCode: "",
-      city: "",
+      name: "jan doe",
+      email: "jandoe@mail.it",
+      street: "via roma 1",
+      postalCode: "00100",
+      city: "roma",
     },
   },
 ];
