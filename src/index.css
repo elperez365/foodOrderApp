@@ -228,6 +228,15 @@ h1 {
   box-shadow: 0 1px 6px rgba(0, 0, 0, 0.3);
 }
 
+@media screen and (max-width: 768px) {
+  .histories-layout {
+    flex-direction: column;
+  }
+  .histories-container {
+    width: 100%;
+  }
+}
+
 .order-detail {
   display: flex;
   flex-direction: column;
